@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="score_team_0">0</integer>
+    <integer name="score_team_1">0</integer>
+    <integer name="working_score">0</integer>
+    <integer name="current_round">0</integer>
+</resources>
