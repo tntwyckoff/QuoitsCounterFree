@@ -2,7 +2,8 @@
     <string name="app_name">Quoits Counter (Beta)</string>
     <string name="team_name_0">Good guys</string>
     <string name="team_name_1">Bad guys</string>
-    <string name="scoreSummaryFormat">%1$s: %2$d point(s)</string>
+    <!--<string name="scoreSummaryFormat">%1$s: %2$d point(s)</string>-->
+    <string name="scoreSummaryFormat">%1$d</string>
     <string name="applyScoreFormat">%1$d point(s) will be applied to \'%2$s\'</string>
     <string name="noScoreFormat">No blood!</string>
     <string name="gamePoint">GAME POINT!</string>
@@ -28,4 +29,7 @@
     <string name="title_activity_adjust_score">Adjust Score</string>
     <string name="modify_score_label_format">Adjust score for team \'%1$s\'</string>
     <string name="edit_team_name_hint">(Enter team name)</string>
+    <string name="title_activity_main_activity2">Game On!</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

@@ -20,7 +20,7 @@ public class SplashActivity extends Activity {
                 try {
                     sleep(4 * 1000);
 
-                    Intent mainActivity = new Intent("android.intent.action.COUNTER");
+                    Intent mainActivity = new Intent("android.intent.action.COUNTER2");
                     startActivity(mainActivity);
                 }
                 catch (InterruptedException e){

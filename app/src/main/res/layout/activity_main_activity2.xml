@@ -1,0 +1,229 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.integral_applications.products.quoitscounterfree.MainActivity2Activity">
+
+    <!-- easy part: label which will show team 0 alias -->
+    <TextView
+        android:id="@+id/labelTeamName0"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight=".1"
+        android:gravity="center"
+        android:text="{Team 0 display area}"
+        android:textSize="@dimen/abc_text_size_title_material" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".4"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight=".4">
+
+            <!-- outer circle; one point -->
+            <ImageView
+                android:id="@+id/pointTeam0"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/circle" />
+
+            <!-- inner circle; ringer -->
+            <ImageView
+                android:id="@+id/ringerTeam0"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                android:layout_margin="60dp"
+                android:clickable="true"
+                android:src="@drawable/inner_circle" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/labelScore0"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".2"
+            android:gravity="top|right"
+            android:text="{##}"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".4">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight=".4">
+
+                <!-- outer circle; one point -->
+                <ImageView
+                    android:id="@+id/pointTeam1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/circle" />
+
+                <!-- inner circle; ringer -->
+                <ImageView
+                    android:id="@+id/ringerTeam1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="60dp"
+                    android:src="@drawable/inner_circle" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/labelScore1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".2"
+                android:gravity="bottom|right"
+                android:text="{##}"
+                android:textSize="@dimen/abc_text_size_large_material" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pendingOverlayTeam0"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="8" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="84"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2"/>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="0dp"
+                    android:layout_weight=".6">
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:alpha=".5"
+                        android:background="@android:color/white" />
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp"
+                        android:background="@android:color/white">
+
+                        <TextView
+                            android:id="@+id/labelChangeTeam0"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="TODO: Set this at run-time...apply?:"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="@dimen/abc_text_size_medium_material" />
+
+                        <TextView
+                            android:id="@+id/centerApply0"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_centerHorizontal="true"/>
+
+                        <Button
+                            android:id="@+id/apply0"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toLeftOf="@+id/centerApply0"
+                            android:layout_marginBottom="6dp"
+                            android:text="Apply" />
+
+                        <Button
+                            android:id="@+id/cancel0"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toRightOf="@+id/centerApply0"
+                            android:layout_marginBottom="6dp"
+                            android:text="Cancel" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="8" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- label which will show team 1 alias -->
+    <TextView
+        android:id="@+id/labelTeamName1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight=".1"
+        android:gravity="center"
+        android:text="{Team 1 display area}"
+        android:textSize="@dimen/abc_text_size_title_material" />
+
+</LinearLayout>
