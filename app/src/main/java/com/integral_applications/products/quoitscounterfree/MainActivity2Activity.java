@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -24,7 +25,7 @@ import com.integral_applications.products.quoitscounter.models.QCSettings;
 import java.lang.reflect.Method;
 
 
-public class MainActivity2Activity extends Activity {
+public class MainActivity2Activity extends AppCompatActivity {
 
     final int START_EDIT_TEAMS_REQUEST_CODE = 1;
     final int START_ADJUST_SCRORE_TEAM_0 = 2;
@@ -67,7 +68,7 @@ public class MainActivity2Activity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_activity2, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

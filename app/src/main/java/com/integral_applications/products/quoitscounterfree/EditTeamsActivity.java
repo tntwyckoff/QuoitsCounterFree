@@ -3,6 +3,7 @@ package com.integral_applications.products.quoitscounterfree;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 
-public class EditTeamsActivity extends Activity {
+public class EditTeamsActivity extends AppCompatActivity {
 
     EditText _edit0, _edit1;
     CheckBox _showEditTeams;
@@ -64,7 +65,7 @@ public class EditTeamsActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edit_teams, menu);
+//        getMenuInflater().inflate(R.menu.menu_edit_teams, menu);
         return true;
     }
 
