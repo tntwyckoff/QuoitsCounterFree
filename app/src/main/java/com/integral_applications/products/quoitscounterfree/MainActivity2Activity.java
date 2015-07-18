@@ -32,7 +32,7 @@ public class MainActivity2Activity extends Activity {
 
     QCSettings _settings;
     QCGame _game;
-    int _workingScore;
+    int _workingScore = 0;
     int _currentRound = 1;
     boolean _workingTeam = false;
     boolean _editTeamsShown = false;
@@ -40,7 +40,7 @@ public class MainActivity2Activity extends Activity {
     Button _apply0, _apply1, _cancel0, _cancel1;
     ImageView _pointTeam0, _ringerTeam0, _pointTeam1, _ringerTeam1;
     TextView _labelTeamName0, _labelTeamName1, _labelScore0, _labelScore1, _labelChange0, _labelChange1;
-    LinearLayout _pendingOverlayTeam0;
+    LinearLayout _pendingOverlayTeam0, _pendingOverlayTeam1;
 
 
     @Override
@@ -252,10 +252,28 @@ public class MainActivity2Activity extends Activity {
         });
 
         _pointTeam1.setOnTouchListener((view, ev) -> {
-            addToWorkingScore(true, 1);
+            int action = ev.getActionMasked();
+
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    addToWorkingScore(true, 1);
+                    break;
+            }
+
             return true;
         });
-        _ringerTeam1.setOnTouchListener((view, ev) ->{ addToWorkingScore(true, 2); return true;} );
+
+        _ringerTeam1.setOnTouchListener((view, ev) -> {
+            int action = ev.getActionMasked();
+
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    addToWorkingScore(true, 2);
+                    break;
+            }
+
+            return true;
+        });
 
         _apply0.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -267,33 +285,35 @@ public class MainActivity2Activity extends Activity {
                 cancelWorkingScore();
             }
         });
-//        _apply1.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                applyScore();
-//            }
-//        });
-//        _cancel1.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                cancelWorkingScore();
-//            }
-//        });
 
-//        _team0Summary.setLongClickable(true);
-//        _team0Summary.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                teamLabelEditGesture(false);
-//                return true;
-//            }
-//        });
-//        _team1Summary.setLongClickable(true);
-//        _team1Summary.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                teamLabelEditGesture(true);
-//                return true;
-//            }
-//        });
+        _apply1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                applyScore();
+            }
+        });
+        _cancel1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                cancelWorkingScore();
+            }
+        });
+
+        _labelScore0.setLongClickable(true);
+        _labelScore0.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                teamLabelEditGesture(false);
+                return true;
+            }
+        });
+
+        _labelScore1.setLongClickable(true);
+        _labelScore1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                teamLabelEditGesture(true);
+                return true;
+            }
+        });
     }
 
     private void findViews() {
@@ -304,10 +324,11 @@ public class MainActivity2Activity extends Activity {
         this._labelTeamName0 = (TextView)findViewById(R.id.labelTeamName0);
         this._labelTeamName1 = (TextView)findViewById(R.id.labelTeamName1);
         this._labelChange0 = (TextView)findViewById(R.id.labelChangeTeam0);
-        // this._labelChange1 = (TextView)findViewById(R.id.labelChangeTeam1);
+        this._labelChange1 = (TextView)findViewById(R.id.labelChangeTeam1);
         this._labelScore0 = (TextView)findViewById(R.id.labelScore0);
         this._labelScore1 = (TextView)findViewById(R.id.labelScore1);
         this._pendingOverlayTeam0 = (LinearLayout)findViewById(R.id.pendingOverlayTeam0);
+        this._pendingOverlayTeam1 = (LinearLayout)findViewById(R.id.pendingOverlayTeam1);
         this._pointTeam0 = (ImageView)findViewById(R.id.pointTeam0);
         this._pointTeam1 = (ImageView)findViewById(R.id.pointTeam1);
         this._ringerTeam0 = (ImageView)findViewById(R.id.ringerTeam0);
@@ -331,9 +352,8 @@ public class MainActivity2Activity extends Activity {
         }
 
         // points are being added to T1
-//        _buttonGroup1.setVisibility(View.VISIBLE);
-//        _team1Preview.setVisibility(View.VISIBLE);
-//        _team1Preview.setText(String.format(getString(R.string.applyScoreFormat), _workingScore, _settings.getTeamName1()));
+        this._pendingOverlayTeam1.setVisibility(View.VISIBLE);
+        this._labelChange1.setText(String.format(getString(R.string.applyScoreFormat), _workingScore, _settings.getTeamName1()));
     }
 
     private  void updateUIPostApplyScore() {
@@ -405,6 +425,7 @@ public class MainActivity2Activity extends Activity {
 
     private void hidePendingElements() {
         this._pendingOverlayTeam0.setVisibility(View.INVISIBLE);
+        this._pendingOverlayTeam1.setVisibility(View.INVISIBLE);
 
 //        _buttonGroup0.setVisibility(View.INVISIBLE);
 //        _buttonGroup1.setVisibility(View.INVISIBLE);
