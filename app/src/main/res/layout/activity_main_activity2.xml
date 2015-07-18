@@ -77,7 +77,6 @@
 
         </LinearLayout>
 
-
         <!-- this horz linear layout contains the overlay which is
                 shown when T1 has a pending score -->
         <LinearLayout
@@ -134,7 +133,7 @@
                             android:textSize="@dimen/abc_text_size_medium_material" />
 
                         <TextView
-                            android:id="@+id/centerApply0"
+                            android:id="@+id/centerApply1"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_centerHorizontal="true" />
@@ -145,7 +144,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_marginBottom="6dp"
-                            android:layout_toLeftOf="@+id/centerApply0"
+                            android:layout_toLeftOf="@+id/centerApply1"
                             android:text="Apply" />
 
                         <Button
@@ -154,7 +153,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_marginBottom="6dp"
-                            android:layout_toRightOf="@+id/centerApply0"
+                            android:layout_toRightOf="@+id/centerApply1"
                             android:text="Cancel" />
                     </RelativeLayout>
                 </RelativeLayout>
