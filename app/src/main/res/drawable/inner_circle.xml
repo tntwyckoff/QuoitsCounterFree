@@ -7,4 +7,10 @@
     <solid
         android:color="@android:color/holo_red_dark" />
 
+    <!-- true sizing is handled inside the layouts; but just setting
+       height/width equal here seems to constrain the oval to a circle,
+       which is what we want.
+    -->
+    <size android:height="30dp" android:width="30dp" />
+
 </shape>

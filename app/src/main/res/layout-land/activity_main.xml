@@ -2,69 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.integral_applications.products.quoitscounterfree.MainActivity2Activity">
+    tools:context="com.integral_applications.products.quoitscounterfree.MainActivity">
 
     <!-- easy part: label which will show team 0 alias -->
     <TextView
         android:id="@+id/labelTeamName0"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_width="18dp"
+        android:layout_height="fill_parent"
         android:layout_gravity="center"
-        android:layout_weight=".1"
         android:gravity="center"
         android:text="{Team 0 display area}"
-        android:textSize="@dimen/abc_text_size_title_material" />
+        android:textSize="@dimen/abc_text_size_title_material"
+        />
 
     <!-- first large layout defines space for T0's circles as well as
      the overlay that is shown when points are to be applied to T1  -->
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".4">
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight=".48">
 
         <!-- this horz linear layout contains the circles and the score/T0 -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".2" />
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight=".4">
-
-                <!-- outer circle; one point -->
-                <ImageView
-                    android:id="@+id/pointTeam0"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:clickable="true"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/circle" />
-
-                <!-- inner circle; ringer -->
-                <ImageView
-                    android:id="@+id/ringerTeam0"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="60dp"
-                    android:clickable="true"
-                    android:src="@drawable/inner_circle" />
-            </RelativeLayout>
 
             <TextView
                 android:id="@+id/labelScore0"
@@ -73,7 +40,37 @@
                 android:layout_weight=".2"
                 android:gravity="top|right"
                 android:text="{##}"
-                android:textSize="@dimen/abc_text_size_large_material" />
+                android:textSize="@dimen/abc_text_size_large_material"
+                />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight=".8">
+
+                <!-- outer circle; one point -->
+                <ImageView
+                    android:id="@+id/pointTeam0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:clickable="true"
+                    android:scaleX=".98"
+                    android:scaleY=".98"
+                    android:src="@drawable/circle" />
+
+                <!-- inner circle; ringer -->
+                <ImageView
+                    android:id="@+id/ringerTeam0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_centerInParent="true"
+                    android:clickable="true"
+                    android:scaleX=".4"
+                    android:scaleY=".4"
+                    android:src="@drawable/inner_circle" />
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -171,37 +168,39 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <!-- meaningless textview just to create some separation between large areas to L & R -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".04"/>
+
     <!-- second large layout defines space for T1's circles as well as
      the overlay that is shown when points are to be applied to T0  -->
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".4">
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="right"
+        android:layout_weight=".48">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".2" />
-
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight=".4">
+                android:layout_weight=".8">
 
                 <!-- outer circle; one point -->
                 <ImageView
                     android:id="@+id/pointTeam1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:scaleX=".98"
+                    android:scaleY=".98"
                     android:src="@drawable/circle" />
 
                 <!-- inner circle; ringer -->
@@ -210,7 +209,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_centerInParent="true"
-                    android:layout_margin="60dp"
+                    android:scaleX=".4"
+                    android:scaleY=".4"
                     android:src="@drawable/inner_circle" />
             </RelativeLayout>
 
@@ -219,7 +219,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight=".2"
-                android:gravity="bottom|right"
+                android:gravity="top|left"
                 android:text="{##}"
                 android:textSize="@dimen/abc_text_size_large_material" />
 
@@ -320,12 +320,12 @@
     <!-- label which will show team 1 alias -->
     <TextView
         android:id="@+id/labelTeamName1"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_width="18dp"
+        android:layout_height="fill_parent"
         android:layout_gravity="center"
-        android:layout_weight=".1"
         android:gravity="center"
         android:text="{Team 1 display area}"
-        android:textSize="@dimen/abc_text_size_title_material" />
+        android:textSize="@dimen/abc_text_size_title_material"
+        />
 
 </LinearLayout>

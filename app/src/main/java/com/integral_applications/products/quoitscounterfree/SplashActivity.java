@@ -2,6 +2,7 @@ package com.integral_applications.products.quoitscounterfree;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,9 +19,9 @@ public class SplashActivity extends Activity {
         Thread splashDelay = new Thread (){
             public void run(){
                 try {
-                    sleep(4 * 1000);
-
-                    Intent mainActivity = new Intent("android.intent.action.COUNTER2");
+                    Resources res = getResources();
+                    sleep(res.getInteger(R.integer.splash_duration_seconds) * 1000);
+                    Intent mainActivity = new Intent("android.intent.action.COUNTER");
                     startActivity(mainActivity);
                 }
                 catch (InterruptedException e){

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <integer name="splash_duration_seconds">3</integer>
     <integer name="score_team_0">0</integer>
     <integer name="score_team_1">0</integer>
     <integer name="working_score">0</integer>

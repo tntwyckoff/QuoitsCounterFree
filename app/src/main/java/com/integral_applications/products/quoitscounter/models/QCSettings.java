@@ -1,5 +1,6 @@
 package com.integral_applications.products.quoitscounter.models;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
 
@@ -16,10 +17,10 @@ public class QCSettings implements Serializable {
 
     private static final long serialVersionUID = 1;
     static QCSettings _instance;
-    boolean _showEditTeamsOnStart = true;
+    boolean _showEditTeamsOnStart = true, _loadedFromDisk = false;
     String _teamName0, _teamName1;
     int _runCount = 0, _currentRound = 1;
-    transient ContextWrapper _context;
+    // transient ContextWrapper _context;
 
     static QCSettings getInstance(ContextWrapper context){
         if (null == _instance) {
@@ -34,9 +35,9 @@ public class QCSettings implements Serializable {
                 objectInputStream.close();
                 fileInputStream.close();
 
-                _instance.setContext(context);
+                // _instance.setContext(context);
+                _instance.setLoadedFromDisk(loaded = true);
 
-                loaded = true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -46,11 +47,11 @@ public class QCSettings implements Serializable {
 
             if (!loaded) {
                 _instance = new QCSettings();
-
-                _instance.setContext(context);
-
-                _instance.setTeamName0(context.getString(R.string.team_name_0));
-                _instance.setTeamName1(context.getString(R.string.team_name_1));
+//
+//                _instance.setContext(context);
+//
+//                _instance.setTeamName0(context.getString(R.string.team_name_0));
+//                _instance.setTeamName1(context.getString(R.string.team_name_1));
             }
         }
 
@@ -91,14 +92,14 @@ public class QCSettings implements Serializable {
         return 1 == _runCount;
     }
 
-    public Boolean saveSettings (){
+    public static Boolean saveSettings (ContextWrapper context){
         Boolean result = false;
 
         try
         {
-            FileOutputStream fos = _context.openFileOutput(_context.getString(R.string.settings_file_name), Context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(context.getString(R.string.settings_file_name), Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(this);
+            os.writeObject(_instance);
             os.flush(); // flush the stream to insure all of the information was written to 'save_object.bin'
             os.close();// close the stream
 
@@ -112,14 +113,13 @@ public class QCSettings implements Serializable {
         return result;
     }
 
-    public boolean clearSettings(){
+    public static boolean clearSettings(ContextWrapper context){
         boolean result = false;
 
         try {
-
             _instance = null;
-            _context.deleteFile(_context.getString( R.string.settings_file_name));
-            GetSettings(_context);
+            context.deleteFile(context.getString(R.string.settings_file_name));
+            GetSettings(context);
             result = true;
         }
         catch (Exception e){
@@ -132,15 +132,29 @@ public class QCSettings implements Serializable {
     void incrementRunCount (){
         _runCount++;
     }
+//
+//    void setContext (ContextWrapper context){
+//        _context = context;
+//    }
 
-    void setContext (ContextWrapper context){
-        _context = context;
+    void setLoadedFromDisk (boolean loaded){
+        _loadedFromDisk = loaded;
+    }
+
+    boolean getLoadedFromDisk (){
+        return  _loadedFromDisk;
     }
 
     public static QCSettings GetSettings (ContextWrapper context){
 
-        return getInstance(context);
+        QCSettings result = getInstance(context);
 
+        if (!result.getLoadedFromDisk()){
+            result.setTeamName0(context.getString(R.string.team_name_0));
+            result.setTeamName1(context.getString(R.string.team_name_1));
+        }
+
+        return result;
 /*
 
         if (result.getIsFirstRun()) {
@@ -148,7 +162,6 @@ public class QCSettings implements Serializable {
             result.setTeamName1(ctx.getString(R.string.team_name_1));
         }
 
-        return result;
 */
     }
 }

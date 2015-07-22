@@ -1,7 +1,9 @@
 package com.integral_applications.products.quoitscounter.models;
 
 
-public class QCTeam {
+import java.io.Serializable;
+
+public class QCTeam implements Serializable {
     String _teamName;
     int _score = 0;
 

@@ -2,6 +2,7 @@ package com.integral_applications.products.quoitscounterfree;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -36,30 +37,14 @@ public class EditTeamsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_teams);
 
         findViews();
+        setListeners();
 
-        _settings = QCSettings.GetSettings(this);
+        if (null != savedInstanceState){
+            _settings = (QCSettings)savedInstanceState.getSerializable("_settings");
+        }
 
-        _showEditTeams.setChecked(_settings.getShowEditTeamsOnStart());
-        _edit0.setText(_settings.getTeamName0());
-        _edit1.setText(_settings.getTeamName1());
-        _commit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                internalContinue();
-            }
-        });
-        _clear0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearTeam0();
-            }
-        });
-        _clear1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearTeam1();
-            }
-        });
+        if (null == _settings)
+            _settings = QCSettings.GetSettings(this);
     }
 
     @Override
@@ -90,6 +75,46 @@ public class EditTeamsActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        _settings.setTeamName0(_edit0.getText().toString());
+        _settings.setTeamName1(_edit1.getText().toString());
+        _settings.setShowEditTeamsOnStart(_showEditTeams.isChecked());
+
+        outState.putSerializable("_settings", _settings);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        updateUIFromState();
+    }
+
+
+    private void setListeners() {
+        _commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                internalContinue();
+            }
+        });
+        _clear0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearTeam0();
+            }
+        });
+        _clear1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearTeam1();
+            }
+        });
+    }
+
     void internalContinue(){
         String t0, t1;
 
@@ -103,9 +128,12 @@ public class EditTeamsActivity extends AppCompatActivity {
         _settings.setTeamName1(t1);
         _settings.setShowEditTeamsOnStart(_showEditTeams.isChecked());
 
-        Boolean saved = _settings.saveSettings();
+        Boolean saved = QCSettings.saveSettings(this);
 
-        setResult(Activity.RESULT_OK);
+        Intent intent = this.getIntent();
+        intent.putExtra("QCSettings", _settings);
+
+        setResult(Activity.RESULT_OK, intent);
 
         finish();
     }
@@ -118,6 +146,12 @@ public class EditTeamsActivity extends AppCompatActivity {
     void clearTeam1(){
         _edit1.setText("");
         _edit1.selectAll();
+    }
+
+    private void updateUIFromState() {
+        _showEditTeams.setChecked(_settings.getShowEditTeamsOnStart());
+        _edit0.setText(_settings.getTeamName0());
+        _edit1.setText(_settings.getTeamName1());
     }
 
     void findViews (){
