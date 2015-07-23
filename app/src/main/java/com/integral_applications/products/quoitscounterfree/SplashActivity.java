@@ -1,5 +1,6 @@
 package com.integral_applications.products.quoitscounterfree;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -7,6 +8,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 
 
 public class SplashActivity extends Activity {
@@ -16,11 +24,26 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        Resources res = getResources();
+
+        ImageView image = (ImageView)findViewById(R.id.splashImage);
+
+        image.setRotationY(90);
+        image.setVisibility(View.VISIBLE);
+
+        ObjectAnimator coin = ObjectAnimator.ofFloat(image, "rotationY", 90f, 0f);
+        coin.setStartDelay(res.getInteger(R.integer.splash_animation_delay));
+        coin.setDuration(res.getInteger(R.integer.splash_animation_duration));
+        coin.setInterpolator(new AccelerateDecelerateInterpolator());
+        coin.start();
+
+        // image.startAnimation(r);
+
         Thread splashDelay = new Thread (){
             public void run(){
                 try {
-                    Resources res = getResources();
                     sleep(res.getInteger(R.integer.splash_duration_seconds) * 1000);
+
                     Intent mainActivity = new Intent("android.intent.action.COUNTER");
                     startActivity(mainActivity);
                 }

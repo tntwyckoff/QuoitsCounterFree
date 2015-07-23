@@ -9,8 +9,52 @@
     tools:context="com.dahtkahm.alphas.test2.SplashActivity"
     android:background="@android:color/black">
 
-    <TextView android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/splashImage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/splash"/>
+        android:src="@drawable/icon_bw_sm"
+        android:adjustViewBounds="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
+        android:visibility="invisible"
+        />
+
+    <LinearLayout android:id="@+id/intapps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/splashImage"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        >
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="\u0283"/>-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="\u0020"/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1ntegral @pplication"
+            android:textAllCaps="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\u0283"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/intapps"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/abc_text_size_headline_material"
+        android:text="Quoits Counter" />
+
+
 
 </RelativeLayout>
